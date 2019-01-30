@@ -1,0 +1,12 @@
+<div class="grid-container">
+    <div class='banner'>
+        <mat-toolbar>
+            <instructions></instructions>
+            <div class='fill'></div>
+            <players #playerComponent></players>
+        </mat-toolbar>
+    </div>
+    <color-block *ngFor='let color of colors' 
+        [classes]='getClasses(color)' [color]='color'>
+    </color-block>
+</div>

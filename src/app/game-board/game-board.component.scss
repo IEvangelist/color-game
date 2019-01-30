@@ -1,0 +1,60 @@
+.grid-container {
+  height: 80%;
+  width: 80%;
+  display: grid;
+  grid-column-gap: 6px;
+  grid-row-gap: 12px;
+  grid-template-columns: repeat(1fr, 4);
+  grid-template-rows: repeat(1fr, 4);
+  grid-template-areas: "b b b b" "tl tcl tcr tr" "ml mcl mcr mr" "bl bcl bcr br";
+}
+.banner {
+  grid-area: b;
+  grid-row: 1 / 2;
+  border-radius: 6px;
+  
+  > mat-toolbar {
+    border-radius: 6px;
+    height: 100%;
+    align-items: initial;
+  }
+}
+.fill {
+  flex: 1 1 auto;
+}
+.top-left {
+  grid-area: tl;
+}
+.top-center-left {
+  grid-area: tcl;
+}
+.top-center-right {
+  grid-area: tcr;
+}
+.top-right {
+  grid-area: tr;
+}
+.middle-left {
+  grid-area: ml;
+}
+.middle-center-left {
+  grid-area: mcl;
+}
+.middle-center-right {
+  grid-area: mcr;
+}
+.middle-right {
+  grid-area: mr;
+}
+.bottom-left {
+  grid-area: bl;
+}
+.bottom-center-left {
+  grid-area: bcl;
+}
+.bottom-center-right {
+  grid-area: bcr;
+}
+.bottom-right {
+  grid-area: br;
+}
