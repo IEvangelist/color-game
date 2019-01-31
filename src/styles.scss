@@ -1,6 +1,9 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
-body.mat-app-background {
-    margin: 0;
+html, body {
     height: 100%;
+}
+
+body {
+    margin: 0;
 }
