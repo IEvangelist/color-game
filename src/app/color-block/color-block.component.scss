@@ -13,7 +13,7 @@
 
 :host > div.selected:not(.winner) {
     cursor: not-allowed;
-    filter: opacity(.3);
+    filter: opacity(.2);
 }
 
 :host > div.winner {
