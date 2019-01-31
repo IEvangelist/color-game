@@ -4,7 +4,8 @@ import { GameEngineService, GameState } from '../services/game-engine.service';
 @Component({
   selector: 'color-block',
   templateUrl: './color-block.component.html',
-  styleUrls: ['./color-block.component.scss']
+  styleUrls: ['./color-block.component.scss'],
+
 })
 export class ColorBlockComponent {
   @Input() classes: string[];

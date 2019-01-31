@@ -3,6 +3,11 @@
     border: solid whitesmoke 3px;
     border-radius: 6px;
 
+    &:active {
+        transform: scale(2);
+        transition: all .5s ease-in-out;
+    }
+
     &:hover {
         cursor: pointer;
         filter:  invert(.1) opacity(.9);
