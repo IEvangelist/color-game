@@ -1,11 +1,33 @@
 import { Component, Input } from '@angular/core';
 import { GameEngineService, GameState } from '../services/game-engine.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 @Component({
   selector: 'color-block',
   templateUrl: './color-block.component.html',
   styleUrls: ['./color-block.component.scss'],
-
+  animations: [
+    trigger('wasClicked', [
+      state('idle', style({
+        transform: 'scale(1)'
+      })),
+      state('clicked', style({
+        transform: 'scale(1.2)'
+      })),
+      transition('idle => clicked', [
+        animate('0.4s')
+      ]),
+      transition('clicked => idle', [
+        animate('0.1s')
+      ]),
+    ]),
+  ],
 })
 export class ColorBlockComponent {
   @Input() classes: string[];
@@ -19,6 +41,7 @@ export class ColorBlockComponent {
       : this.classes;
   }
 
+  isClicked = false;
   isSelected: boolean = false;
 
   private currentState: GameState;
@@ -37,6 +60,9 @@ export class ColorBlockComponent {
   }
 
   onClick() {
+    this.isClicked = true;
+    setTimeout(() => this.isClicked = false, 100);
+
     if (this.currentState === 'selectWinningColor') {
       this.gameEngine.setWinningColor(this.color);
       this.gameEngine.changeState('playingGame');

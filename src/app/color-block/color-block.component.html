@@ -1,4 +1,4 @@
-<div [ngClass]='allClasses' (click)=onClick()>
+<div [ngClass]='allClasses' (click)=onClick() [@wasClicked]="isClicked ? 'clicked' : 'idle'">
   <mat-card class='color-card'>
     <mat-card-header>
       <mat-card-title>{{ color | titlecase }}</mat-card-title>

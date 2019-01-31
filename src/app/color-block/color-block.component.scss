@@ -2,11 +2,8 @@
     height: 100%;
     border: solid whitesmoke 3px;
     border-radius: 6px;
-
-    &:active {
-        transform: scale(2);
-        transition: all .5s ease-in-out;
-    }
+    transition: all .5s ease-in-out;
+    user-select: none;
 
     &:hover {
         cursor: pointer;
