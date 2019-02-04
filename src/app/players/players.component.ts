@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameEngineService, GameState } from '../services/game-engine.service';
+import { DataStoreService } from '../services/data-store.service';
 
 @Component({
   selector: 'players',
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.scss']
 })
-export class PlayersComponent {
-  players: string[] = [ 'Lennyx', 'Londyn', 'Lyric' ];
+export class PlayersComponent implements OnInit {
+  players: string[] = [];
   player: string;
 
   private activePlayerIndex = 0;
@@ -22,24 +23,33 @@ export class PlayersComponent {
     return player;
   }
 
-  constructor(private readonly gameEngine: GameEngineService) {
+  constructor(
+    private readonly gameEngine: GameEngineService,
+    private readonly dataStore: DataStoreService) {
     this.gameEngine.changeState('selectWinningColor');
-   }
+  }
 
-  addPlayer(player: string) {
+  async ngOnInit() {
+    const players = await this.dataStore.getAll();
+    this.players = players.map(p => p.name);
+  }
+
+  async addPlayer(player: string) {
     if (!player) {
       return;
     }
 
     this.player = null;
+    await this.dataStore.set(player);
     this.players.push(player);
     if (this.players.length >= 2) {
       this.gameEngine.changeState('selectWinningColor');
     }
   }
 
-  removePlayer(player: string) {
+  async removePlayer(player: string) {
     if (this.players.length) {
+      await this.dataStore.delete(player)
       this.players =
         this.players.filter(p => p !== player);
     }
