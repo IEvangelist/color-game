@@ -57,6 +57,19 @@ export class GameEngineService {
 
   changeState(state: GameState) {
     this.stateBroadcast.next(state);
+    const details = this.stateDetails[state];
+    this.speak(details.message());
+  }
+
+  speak(message: string) {
+    const utterance = new SpeechSynthesisUtterance(message);
+    const voices = window.speechSynthesis.getVoices();
+    utterance.voice = voices.find(v => v.name === 'Google US English') || voices[0];
+    utterance.lang = 'en-US';
+    utterance.volume = 1;
+    utterance.rate = 1;
+
+    speechSynthesis.speak(utterance);
   }
 
   setActivePlayer(player: string) {
