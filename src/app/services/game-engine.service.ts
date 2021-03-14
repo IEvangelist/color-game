@@ -30,7 +30,7 @@ export class GameEngineService {
     this.stateDetails['selectWinningColor'] = {
       state: 'selectWinningColor',
       title: 'Select Winning Color',
-      message: () => 'Have players cover their eyes, and then the "referee" select the winning color.'
+      message: () => 'Select "Random Selection", or players cover their eyes, and then the "referee" select the winning color.'
     };
     this.stateDetails['playingGame'] = {
       state: 'playingGame',
@@ -53,6 +53,18 @@ export class GameEngineService {
 
   setWinningColor(color: string) {
     this.winningColor = color;
+    this.changeState('playingGame');
+  }
+
+  setRandomWinningColor() {
+    const colors = [
+      'black', 'white',
+      'red', 'blue', 'yellow',
+      'orange', 'green', 'purple',
+      'teal', 'pink', 'brown', 'gray'
+    ];
+    this.setWinningColor(
+      colors[Math.floor(Math.random() * colors.length)]);
   }
 
   changeState(state: GameState) {

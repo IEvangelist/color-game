@@ -1,6 +1,9 @@
 <div>
     <h1>{{ title }}</h1>
     <p>{{ message }}</p>
+    <button mat-raised-button color='primary' (click)=randomSelection() [disabled]='!isRandomEnabled'>
+        Random Selection
+    </button>
     <button mat-raised-button color='primary' (click)=resetGame() [disabled]='!isGameOver'>
         Reset Game
     </button>

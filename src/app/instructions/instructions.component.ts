@@ -21,6 +21,10 @@ export class InstructionsComponent {
     return this.currentState === 'gameEnded';
   }
 
+  get isRandomEnabled() {
+    return this.currentState === 'selectWinningColor';
+  }
+
   private get details(): StateDetails {
     return this.gameEngine.stateDetails[this.currentState];
   }
@@ -35,5 +39,9 @@ export class InstructionsComponent {
 
   resetGame() {
     this.gameEngine.reset();
+  }
+
+  randomSelection() {
+    this.gameEngine.setRandomWinningColor();
   }
 }

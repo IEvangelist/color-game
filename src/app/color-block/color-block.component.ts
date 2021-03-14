@@ -65,7 +65,6 @@ export class ColorBlockComponent {
 
     if (this.currentState === 'selectWinningColor') {
       this.gameEngine.setWinningColor(this.color);
-      this.gameEngine.changeState('playingGame');
     } else if (this.currentState === 'playingGame') {
       this.isSelected = true;
       if (this.gameEngine.isWinningColor(this.color)) {

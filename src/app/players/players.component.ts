@@ -26,12 +26,15 @@ export class PlayersComponent implements OnInit {
   constructor(
     private readonly gameEngine: GameEngineService,
     private readonly dataStore: DataStoreService) {
-    this.gameEngine.changeState('selectWinningColor');
+    this.gameEngine.changeState('usersRequired');
   }
 
   async ngOnInit() {
     const players = await this.dataStore.getAll();
     this.players = players.map(p => p.name);
+    if (this.players.length >= 2) {
+      this.gameEngine.changeState('selectWinningColor');
+    }
   }
 
   async addPlayer(player: string) {
